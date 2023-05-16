@@ -42,7 +42,7 @@ layout: two-cols
 
 ---
 layout: image
-image: moshed.gif
+image: moshed.webp
 ---
 
 
