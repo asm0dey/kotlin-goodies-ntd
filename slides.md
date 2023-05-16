@@ -45,6 +45,7 @@ layout: image
 image: moshed.gif
 ---
 
+
 ---
 layout: statement
 ---
@@ -52,3 +53,10 @@ layout: statement
 # All programming activities have one common trait
 
 ## They require testing!
+
+---
+layout: center
+---
+
+# In this talk I'm trying to tell about good autotests. With <logos-kotlin-icon />
+
