@@ -15,6 +15,9 @@ devDependencies:
   '@iconify-json/emojione-monotone':
     specifier: ^1.1.4
     version: 1.1.4
+  '@iconify-json/fa6-brands':
+    specifier: ^1.1.11
+    version: 1.1.11
   '@iconify-json/gg':
     specifier: ^1.1.4
     version: 1.1.4
@@ -577,6 +580,12 @@ packages:
 
   /@iconify-json/emojione-monotone@1.1.4:
     resolution: {integrity: sha512-NM5oxoebPGZt1Vh46peEgfNUbREZ2mHdlC1fwtdO9+qTaWQlOzIHH4D1aHA7HIIO4v/BIqr08BNufXUNcUT3jg==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
+  /@iconify-json/fa6-brands@1.1.11:
+    resolution: {integrity: sha512-+/dsIafxFCXlUvti0EHzVas9tnYXGqcSpybTBzzXbSVl2Ay1v26e/so/fz2Wrh8L3JrXq0LrMUYDsgZ4geQOqw==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true

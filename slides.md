@@ -60,3 +60,104 @@ layout: center
 
 # In this talk I'm trying to tell about good autotests. With <logos-kotlin-icon />
 
+---
+
+# How test in Java usually look?
+
+```java {all|1|2-6|5|7-11|10|12-16|15}
+class MyVeryImportantTest {
+    @Test
+    void feature_should_work_somehow(){
+       /*snip*/ 
+       assert
+    }
+    @Test
+    void feature_should_work_somehow2(){
+       /*snip*/ 
+       assert
+    }
+    @Test
+    void feature_should_work_somehow3(){
+       /*snip*/ 
+       assert
+    }
+}
+```
+
+Many, many times!
+
+---
+layout: image
+image: world.jpg
+---
+
+## The Flat World
+
+---
+
+# But we wanna beauty!
+
+```kotlin {all|1|2|3|4|6|7|8}
+passwordService {
+    shouldHash {
+        length { /* snip */ }
+        salt { /* snip  */ }
+    }
+    shouldCheck {
+        validPasswords()
+        invalidPasswords()
+    }   
+}
+```
+
+---
+
+# Parametrized tests? Python
+
+```python {all|1|1,2}
+@pytest.mark.parametrize("test_input,expected", [("3+5", 8), ("2+4", 6), ("6*9", 42)])
+def test_eval(test_input, expected):
+    assert eval(test_input) == expected
+```
+
+`test_input,expected`, really?
+
+---
+
+# Parametrized tests? Java
+
+```java {all|7-10|8|1-6}
+static Stream<Arguments> stringIntAndListProvider() {
+    return Stream.of(
+        arguments("apple", 1, Arrays.asList("a", "b")),
+        arguments("lemon", 2, Arrays.asList("x", "y"))
+    );
+} 
+@ParameterizedTest
+@MethodSource("stringIntAndListProvider")
+void testWithMultiArgMethodSource(String str, 
+    int num, List<String> list) {/* snip */}
+```
+
+`stringIntAndListProvider`, really?
+
+---
+
+# Parametrized tests? Kotlin (with kotest)
+
+```kotlin
+fun isPythagTriple(a: Int, b: Int, c: Int): Boolean = a * a + b * b == c * c
+
+// snip…
+
+withData(
+  Triple(3, 4, 5),
+  Triple(6, 8, 10),
+  Triple(8, 15, 17),
+  Triple(7, 24, 25)
+) { (a, b, c) ->
+  isPythagTriple(a, b, c) shouldBe true
+}
+```
+
+---
