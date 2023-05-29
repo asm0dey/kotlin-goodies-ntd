@@ -112,6 +112,73 @@ passwordService {
 
 ---
 
+# 50 shades of kotest
+
+https://kotest.io
+
+Fun spec:
+```kotlin {all|1|2|3}
+class MyTests : FunSpec({
+    context("context name") {
+        test("test name") {
+            // test here
+        }
+    }
+})
+```
+
+---
+
+# 50 shades of kotest
+
+https://kotest.io
+
+Should spec:
+```kotlin {all|1|2|3}
+class MyTests : ShouldSpec({
+    context("String.length") {
+        should("return the length of the string") {
+            // test here
+        }
+    }
+})
+```
+
+---
+
+# 50 shades of kotest
+
+https://kotest.io
+
+Behavior spec:
+```kotlin {all|1|2|3|4}
+class MyTests : BehaviorSpec({
+    given("a broomstick") {
+        `when`("I sit on it") {
+            then("I should be able to fly") {
+                // test code
+            }
+        }
+    }
+})
+```
+
+---
+
+# 50 shades of kotest
+
+https://kotest.io
+
+|                	|                 	|
+|---------------:	|-----------------	|
+|       Fun spec 	| String Spec     	|
+|    Should spec 	| Describe spec   	|
+| Behaviour spec 	| Word spec       	|
+|      Free spec 	| Feature spec    	|
+|    Expect spec 	| Annotation spec 	|
+
+---
+
 # Parametrized tests? Python
 
 ```python {all|1|1,2}
@@ -310,3 +377,114 @@ checkAll(
 - PROFIT!!
 
 ---
+layout: image
+image: mockingbird.png
+---
+
+<h1 v-click="1">Time to mock!</h1>
+
+<style>
+h1 {
+    color: white !important;
+    text-align: center;
+}
+</style>
+
+---
+
+# Time to mock
+
+#### Setup
+```kotlin {all|1-3|1|2|5-7|5|6|9}
+class UserService(val repo: UserRepository) {
+    fun getAllUsers() = repo.allUsers()
+}
+
+class UserRepository {
+    fun allUsers(): List<User> { TODO("demo") }
+}
+
+class User(val name: String, val age: Int)
+```
+
+---
+
+# Time to mock!
+
+```kotlin {all|1|2|3,7|4,5|8,9|13,14}
+val repo = mockk<UserRepository> {
+    every { allUsers() } returns listOf(
+        mockk {
+            every { name } returns "Pasha"
+            every { age } returns 36
+        },
+        mockk {
+            every { name } returns "Mark"
+            every { age } returns 13
+        }
+    )
+}
+val service = UserService(repo)
+service.getAllUsers()[0].name shouldBe "Pasha"
+```
+<div v-click>
+
+Nice DSL, no flattening of hierarchies.
+
+But how many `should` should I write?
+
+</div>
+
+---
+
+# Atrium expectations!
+
+https://docs.atriumlib.org/
+
+```kotlin {all|1|3|3-4|7-8}
+expect(service.getAllUsers()) toContain o inAny order but only the entries(
+    {
+        its { name } toEqual "Pash"
+        its { age } toEqual 36
+    },
+    {
+        its { name } toEqual "Mark"
+        its { age } toEqual 13
+    }
+)
+```
+
+<div v-click="2">
+
+I've made a mistake to show the error message
+
+</div>
+
+
+---
+
+# Error report
+
+```txt {all|1|3|13-14|4-5|all}
+I expected subject: [User(#3), User(#4)]        (java.util.Arrays.ArrayList <315506631>)
+◆ to contain only, in any order: 
+  ✘ an element which needs: 
+      » ▶ its.definedIn(MockTest.kt:42): 
+          ◾ to equal: "Pash"        <2026086646>
+      » ▶ its.definedIn(MockTest.kt:43): 
+          ◾ to equal: 36        (kotlin.Int <116289638>)
+  ✔ an element which needs: 
+      » ▶ its.definedIn(MockTest.kt:46): 
+          ◾ to equal: "Mark"        <574921197>
+      » ▶ its.definedIn(MockTest.kt:47): 
+          ◾ to equal: 13        (kotlin.Int <453296736>)
+  ❗❗ following elements were mismatched: 
+     ⚬ User(#3)        (User <1041341319>)
+```
+
+<div v-click>
+
+- Readable as a text
+- Shows the errors
+
+</div>
