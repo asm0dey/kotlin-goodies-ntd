@@ -42,7 +42,7 @@ layout: two-cols
 
 ---
 layout: image
-image: moshed.webp
+image: glitched-slide.webp
 ---
 
 
@@ -159,5 +159,154 @@ withData(
   isPythagTriple(a, b, c) shouldBe true
 }
 ```
+
+---
+layout: image
+image: confused.png
+---
+
+# What if
+# I need to test things I don't know I need to test?
+
+<style>
+h1 {
+    color: white !important;
+    text-align: center;
+
+}
+</style>
+
+---
+clicks: 5
+---
+
+# Never write your own hashing (unless…)
+
+```kotlin {all|1|2-4|6|all}
+withData(
+    "love",
+    "secret",
+    "god", // Who will remember the reference?
+) { input ->
+    MD5.compute(input) shouldBe libMd5(input)
+}
+```
+<p v-click="4">Launching…</p>
+<div v-click="5">
+
+1. <openmoji-check-mark/> love
+1. <openmoji-check-mark/> secret
+1. <openmoji-check-mark/> god
+
+</div>
+
+---
+layout: image
+image: lens.png
+---
+
+
+# Time to investigate!
+
+<style>
+h1 {
+    color: white !important;
+    text-align: center;
+}
+</style>
+
+
+---
+
+# Property tests!
+
+## To test things we can not even _imagine_
+
+```kotlin {all|1|2|3|4|6|8|9}
+checkAll(
+    Arb.string(
+        codepoints = Arb.of(
+            (Char.MIN_VALUE.code..Char.MAX_VALUE.code).map(::Codepoint)
+        ),
+        range = 0..52
+    )
+) { input ->
+    MD5.compute(input) shouldBe libMd5(input)
+}
+```
+
+---
+layout: image
+image: explode.png
+---
+
+---
+
+# Error!
+
+```txt {all|1|3|5}
+Property test failed for inputs
+
+0) "꽪Ԉ㴨啣នഄ騿挋③ꩶ괖✷⃮㴧砑琶㋉뇛寵嚱땒箂醉℉ꫴ짥Ẩ鼏콋鹗맼㯖Ở㑾ᜫ綦講뼞仦ꄁ黺鄙ᾓ㤫川陝泴"
+
+Caused by io.kotest.assertions.AssertionFailedError: expected:<"90b23a970ed1b799850a24140ae8ad39"> but was:<"5a430f76b3d544a13bf4b80710a174a0"> at
+```
+
+Wow, it was a complex sample!
+
+But there is more…
+
+---
+
+# Error!
+
+```txt {all|1|2|3|4|5|6|7|8|9}
+Attempting to shrink arg "꽪Ԉ㴨啣នഄ騿挋③ꩶ괖✷⃮㴧砑琶㋉뇛寵嚱땒箂醉℉ꫴ짥Ẩ鼏콋鹗맼㯖Ở㑾ᜫ綦講뼞仦ꄁ黺鄙ᾓ㤫川陝泴"
+Shrink #1: "꽪Ԉ㴨啣នഄ騿挋③ꩶ괖✷⃮㴧砑琶㋉뇛寵嚱땒箂醉℉" fail
+Shrink #2: "꽪Ԉ㴨啣នഄ騿挋③ꩶ괖✷" fail
+Shrink #3: "꽪Ԉ㴨啣នഄ" fail
+Shrink #4: "꽪Ԉ㴨" fail
+Shrink #5: "꽪Ԉ" fail
+Shrink #6: "꽪" fail
+Shrink #7: <empty string> pass
+Shrink result (after 7 shrinks) => "꽪"
+```
+
+And there is more!
+
+---
+
+# Error!
+
+```txt {all|1|3|5}
+Property failed after 1 attempts
+
+	Arg 0: "꽪" (shrunk from 꽪Ԉ㴨啣នഄ騿挋③ꩶ괖✷⃮㴧砑琶㋉뇛寵嚱땒箂醉℉ꫴ짥Ẩ鼏콋鹗맼㯖Ở㑾ᜫ綦講뼞仦ꄁ黺鄙ᾓ㤫川陝泴)
+
+Repeat this test by using seed 4919313423746630853
+```
+
+---
+
+# Repeat? Yes!
+
+```kotlin {all|1,2}
+checkAll(
+    PropTestConfig(seed = 4919313423746630853),
+    Arb.string(
+        codepoints = Arb.of(
+            ('a'.code..Char.MAX_HIGH_SURROGATE.code)
+                .map(::Codepoint)
+        ),
+    )
+) { input ->
+    MD5.compute(input) shouldBe libMd5(input)
+}
+```
+
+- reproduce the test **exactly** like in the failed instance
+- debug it
+- fix it
+- PROFIT!!
 
 ---
