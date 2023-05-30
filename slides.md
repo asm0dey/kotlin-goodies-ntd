@@ -488,3 +488,57 @@ I expected subject: [User(#3), User(#4)]        (java.util.Arrays.ArrayList <315
 - Shows the errors
 
 </div>
+
+---
+layout: image
+image: question.png
+---
+
+# What did we learn?
+
+<style>
+h1 {
+    color: darkorange;
+    text-align: center;
+}
+</style>
+
+---
+
+# What did we learn?
+
+1. Tests should be readable
+2. Testing is not "just unit tests" sometimes
+3. Kotest gives good structure to the tests.
+4. Kotest has built-in property tests
+5. Atrium gives us assertions DSL
+
+---
+layout: cover
+background: monk.png
+---
+
+# Thank you! Time for questions 😄
+
+<div class="text-left">
+<p><ph-twitter-logo-fill/> asm0di0</p>
+<p><mdi-mastodon/> @asm0dey@fosstodon.org</p>
+<p><ph-envelope-simple-open-fill/> me@asm0dey.site</p>
+<p><ph-twitch-logo-fill/> https://jb.gg/twitch</p>
+<p><ph-github-logo-fill/><ph-instagram-logo-fill/><ph-linkedin-logo-fill/><ph-telegram-logo-fill/> asm0dey</p>
+<p><ph-globe-duotone/><a href="https://linktr.ee/asm0dey">https://linktr.ee/asm0dey</a></p>
+</div>
+
+---
+layout: center
+---
+
+<Transform :scale="0.6" origin="center">
+
+![](/presqr.png)
+
+</Transform>
+
+---
+layout: end
+---
