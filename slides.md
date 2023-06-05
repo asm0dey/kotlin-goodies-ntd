@@ -79,6 +79,8 @@ image: /bdd.png
 3. Then
 
 ---
+clicks: 3
+---
 
 # Cucumber
 
@@ -93,7 +95,7 @@ Feature: An example
 
 <div v-click-hide="1">
 
-What's the problem here
+What's the problem here?
 
 </div>
 <div v-click-hide="2">
@@ -219,24 +221,9 @@ layout: center
 
 ---
 
-# Parametrized tests? Python
-
-```python {all|1|1,2}
-@pytest.mark.parametrize("test_input,expected", [("3+5", 8), ("2+4", 6), ("6*9", 42)])
-def test_eval(test_input, expected):
-    assert eval(test_input) == expected
-```
-<v-click>
-
-`test_input,expected`, really?
-
-</v-click>
-
----
-
 # Parametrized tests? Java
 
-```java {all|7-10|8|1-6}
+```java {all|7-10|8|1-6|all}
 static Stream<Arguments> stringIntAndListProvider() {
     return Stream.of(
         arguments("apple", 1, Arrays.asList("a", "b")),
@@ -254,6 +241,13 @@ void testWithMultiArgMethodSource(String str,
 `stringIntAndListProvider`, really?
 
 </v-click>
+<v-clicks>
+
+- Becomes cluttered
+- Not typed (enough)
+- Bound by a string!
+
+</v-clicks>
 
 ---
 
