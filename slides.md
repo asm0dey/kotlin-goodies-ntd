@@ -19,6 +19,7 @@ drawings:
 css: unocss
 colorSchema: 'dark'
 background: black
+download: true
 ---
 
 # Kotlin Goodies for Testing
@@ -113,7 +114,7 @@ Actually __**any**__ line can
 </div>
 <div v-click="3">
 
-Lines match by strings:
+Steps match by __name__ O_o:
 
 ```java
 @And("Press OK button")
@@ -127,7 +128,7 @@ layout: iframe-right
 url: https://kotest.io/docs/framework/testing-styles.html#behavior-spec
 ---
 
-## How do we do it in Kotlin?
+## How can we do it in Kotlin?
 
 Kotest: https://kotest.io
 <br/>
@@ -224,7 +225,7 @@ layout: center
 
 # Parametrized tests? Java
 
-```java {all|7-10|8|1-6|all}
+```java {all|7-11|8|1-6|1|2|3|2-4|all}
 static Stream<Arguments> stringIntAndListProvider() {
     return Stream.of(
         arguments("apple", 1, Arrays.asList("a", "b")),
@@ -233,8 +234,9 @@ static Stream<Arguments> stringIntAndListProvider() {
 } 
 @ParameterizedTest
 @MethodSource("stringIntAndListProvider")
-void testWithMultiArgMethodSource(String str, 
-    int num, List<String> list) {/* snip */}
+void testWithMultiArgMethodSource(String str, int num, List<String> list) {/
+    * snip */
+}
 ```
 
 <v-click>
@@ -279,7 +281,6 @@ image: confused.png
 h1 {
     color: white !important;
     text-align: center;
-
 }
 </style>
 

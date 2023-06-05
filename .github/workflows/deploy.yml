@@ -29,9 +29,9 @@ jobs:
             ${{ runner.os }}-pnpm-store-
       - name: Install dependencies
         run: pnpm install
-      - name: Build
-        run: pnpm run build --base kotlin-goodies-ntd
       - run: npx playwright install
+      - name: Build
+        run: pnpm run build --base /kotlin-goodies-ntd
       - name: Build PDF
         run: pnpm run export --output dist/index.pdf
       - name: Deploy pages
