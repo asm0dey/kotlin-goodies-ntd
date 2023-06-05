@@ -48,139 +48,92 @@ image: glitched-slide.webp
 
 
 ---
-layout: statement
+layout: center
 ---
 
-# All programming activities have one common trait
+# Who are you?
 
-## They require testing!
-
----
-
-# Why the automatic testing is required?
-
-<v-clicks>
-
-1. Make sure that software works
-2. Ensure security
-3. Ensure customer satisfaction
-4. Better code architecture
-5. Saving money
-
-</v-clicks>
-<v-click>
-
-## YES
-
-But also, **tests are the contract**
-
-</v-click>
-
----
-layout: image
-image: hammer.png
----
-
-<h1  style="color:white">The contract should be readable and understandable. This is the law.</h1>
+1. You write code/tests in Java or Kotlin
+2. You wanna migrate to Kotlin, _or_
+3. You wanna make your tests in Kotlin better
 
 ---
 layout: center
 ---
 
-# In this talk I'm trying to tell about good autotests. With <logos-kotlin-icon />
+# How are we doing it?
+
+1. Using DSLs (domain specific languages)
+2. Structuring our code better
+3. Using smart libraries
+
+---
+layout: image-right
+image: /bdd.png
+---
+
+# BDD
+
+1. Given
+2. When
+3. Then
 
 ---
 
-# How test in Java usually look?
+# Cucumber
 
-```java {all|1|2-6|5|7-11|10|12-16|15}
-class MyVeryImportantTest {
-    @Test
-    void feature_should_work_somehow(){
-       /*snip*/ 
-       assert
-    }
-    @Test
-    void feature_should_work_somehow2(){
-       /*snip*/ 
-       assert
-    }
-    @Test
-    void feature_should_work_somehow3(){
-       /*snip*/ 
-       assert
-    }
-}
+```gherkin {all|5}
+Feature: An example
+  Scenario: The example
+    Given I have a username "pasha"
+    When I type username in field "x"
+    And Press OK button
+    Then I get an error "Enter password"
 ```
 
-Many, many times!
+<div v-click-hide="1">
 
----
-layout: image
-image: world.jpg
----
+What's the problem here
 
-## The Flat World
+</div>
+<div v-click-hide="2">
+<div v-click="1">
 
----
+This line might intersect with **any** test
 
-# But we wanna beauty!
+</div>
+</div>
+<div v-click="2">
 
-```kotlin {all|1|2|3|4|6|7|8}
-passwordService {
-    shouldHash {
-        length { /* snip */ }
-        salt { /* snip  */ }
-    }
-    shouldCheck {
-        validPasswords()
-        invalidPasswords()
-    }   
-}
+Actually __**any**__ line can
+
+</div>
+<div v-click="3">
+
+Lines match by strings:
+
+```java
+@And("Press OK button")
+void press_ok_button(){/*TODO*/}
 ```
 
----
-
-# 50 shades of kotest
-
-https://kotest.io
-
-Fun spec:
-```kotlin {all|1|2|3}
-class MyTests : FunSpec({
-    context("context name") {
-        test("test name") {
-            // test here
-        }
-    }
-})
-```
+</div>
 
 ---
-
-# 50 shades of kotest
-
-https://kotest.io
-
-Should spec:
-```kotlin {all|1|2|3}
-class MyTests : ShouldSpec({
-    context("String.length") {
-        should("return the length of the string") {
-            // test here
-        }
-    }
-})
-```
-
+layout: iframe-right
+url: https://kotest.io/docs/framework/testing-styles.html#behavior-spec
 ---
 
-# 50 shades of kotest
+## How do we do it in Kotlin?
 
-https://kotest.io
+Kotest: https://kotest.io
+<br/>
 
-Behavior spec:
-```kotlin {all|1|2|3|4}
+- No obscure text files
+- No string matching
+- everything in one place
+
+```kotlin {all|1|2|3,8|4,9|5,10|all}
 class MyTests : BehaviorSpec({
     given("a broomstick") {
         `when`("I sit on it") {
@@ -188,8 +141,57 @@ class MyTests : BehaviorSpec({
                 // test code
             }
         }
+        `when`("I throw it away") {
+            then("it should come back") {
+                // test code
+            }
+        }
     }
 })
+```
+
+---
+
+## Another flavor of Kotest
+
+Kotest: https://kotest.io
+<br/>
+
+
+```kotlin {all|2|3|4-6|8-9}
+class MyTests : DescribeSpec({
+    describe("score") {
+        it("start as zero") { /* test here */ }
+        describe("with a strike") {
+            it("adds ten") { /* test here */ }
+            it("carries strike to the next frame") { /* test here */ }
+        }
+        describe("for the opposite team") {
+            it("Should negate one score") { /* test here */ }
+        }
+    }
+})
+```
+
+---
+
+# Migrating from JUnit?
+
+```kotlin {all|1|2|2-5|6-9|all}
+class AnnotationSpecExample : AnnotationSpec() {
+    @BeforeEach
+    fun beforeTest() {
+        println("Before each test")
+    }
+    @Test
+    fun test1() {
+        1 shouldBe 1
+    }
+    @Test
+    fun test2() {
+        3 shouldBe 3
+    }
+}
 ```
 
 ---
