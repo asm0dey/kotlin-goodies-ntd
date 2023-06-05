@@ -433,6 +433,15 @@ h1 {
 
 ---
 
+# Disclaimer
+I believe one should mock, not fake. Because
+<br/>
+
+1. Granular control
+2. Can check that something was NOT called
+
+---
+
 # Time to mock
 
 #### Setup
@@ -450,29 +459,74 @@ class User(val name: String, val age: Int)
 
 ---
 
-# Time to mock!
+# How the test looks in Java
 
-```kotlin {all|1|2|3,7|4,5|8,9|13,14}
+```java {all|1|3,4|6,7|9,10|12,13|15,16}
+UserRepository mockRepository = Mockito.mock(UserRepository.class);
+
+// Create some sample user data
+List<User> users = Arrays.asList(new User("Alice", 25), new User("Bob", 30), new User("Charlie", 35));
+
+// Define the expected behavior of the mock repository
+Mockito.when(mockRepository.allUsers()).thenReturn(users);
+
+// Create an instance of the UserService with the mock repository
+UserService userService = new UserService(mockRepository);
+
+// Call the method under test
+List<User> result = userService.getAllUsers();
+
+// Verify the result
+Assertions.assertEquals(users, result);
+```
+
+---
+
+# Time to mock! (MockK edition)
+
+```kotlin {all|1|2|3|5|6}
+val users = listOf(new User("Alice", 25), new User("Bob", 30), new User("Charlie", 35))
+val repo = mockk<UserRepository> {
+    every { allUsers() } returns users
+}
+val service = UserService(repo)
+service.getAllUsers() shouldBe users
+```
+<div v-click>
+
+Nice DSL
+
+Code describing `UserRepository` is inside `{}`
+
+What if I want to mock users too?
+
+</div>
+
+
+---
+
+# Time to mock users! (mockk edition)
+
+```kotlin {all|1|2|3-5|6-8|11,12}
 val repo = mockk<UserRepository> {
     every { allUsers() } returns listOf(
         mockk {
             every { name } returns "Pasha"
-            every { age } returns 36
         },
         mockk {
-            every { name } returns "Mark"
-            every { age } returns 13
-        }
+            every { name } returns "Alexandra"
+        },
     )
 }
 val service = UserService(repo)
-service.getAllUsers()[0].name shouldBe "Pasha"
+service.getAllUsers()[1].name shouldBe "Alexandra"
 ```
+
+Thank Alexandra for helping me with this presentation!
+
 <div v-click>
 
-Nice DSL, no flattening of hierarchies.
-
-But how many `should` should I write?
+Users are described inside `User` mocks!
 
 </div>
 
