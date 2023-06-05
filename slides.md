@@ -55,7 +55,8 @@ layout: center
 
 1. You write code/tests in Java or Kotlin
 2. You wanna migrate to Kotlin, _or_
-3. You wanna make your tests in Kotlin better
+3. You wanna make your tests in Kotlin better, _or_
+4. You wanna introduce Kotlin in your projects!
 
 ---
 layout: center
@@ -69,7 +70,7 @@ layout: center
 
 ---
 layout: image-right
-image: /bdd.png
+image: bdd.png
 ---
 
 # BDD
@@ -253,18 +254,16 @@ void testWithMultiArgMethodSource(String str,
 
 # Parametrized tests? Kotlin (with kotest)
 
-```kotlin
+```kotlin {all|1|3|4-7|8|9}
 fun isPythagTriple(a: Int, b: Int, c: Int): Boolean = a * a + b * b == c * c
-
 // snip…
-
-withData(
+withData( // ddt
   Triple(3, 4, 5),
   Triple(6, 8, 10),
   Triple(8, 15, 17),
   Triple(7, 24, 25)
-) { (a, b, c) ->
-  isPythagTriple(a, b, c) shouldBe true
+) { (a, b, c) -> // destructuring
+  isPythagTriple(a, b, c) shouldBe true //test
 }
 ```
 
