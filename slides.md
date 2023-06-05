@@ -31,10 +31,11 @@ layout: two-cols
 
 # `whoami`
 
-- Developer <emojione-monotone-avocado /> at <logos-jetbrains />
-- Average <fa6-brands-python /> enjoyer
-- Speaker <ph-microphone-fill /> and streamer <ph-twitch-logo /> ([https://twitch.tv/jetbrains](https://jb.gg/twitch) or [<ph-twitch-logo />.<gg-tv />/<logos-jetbrains />](https://jb.gg/twitch))
+- <logos-kotlin-icon /><logos-java /><logos-scala /><logos-clojure/> developer
+- Average <logos-python /> enjoyer
+- Developer <emojione-avocado /> at <logos-jetbrains />
 - Data engineer
+- Speaker <twemoji-microphone /> and streamer <logos-twitch /> ([https://twitch.tv/jetbrains](https://jb.gg/twitch) or [<logos-twitch />.<emojione-television />/<logos-jetbrains />](https://jb.gg/twitch))
 
 ::right::
 
@@ -53,6 +54,34 @@ layout: statement
 # All programming activities have one common trait
 
 ## They require testing!
+
+---
+
+# Why the automatic testing is required?
+
+<v-clicks>
+
+1. Make sure that software works
+2. Ensure security
+3. Ensure customer satisfaction
+4. Better code architecture
+5. Saving money
+
+</v-clicks>
+<v-click>
+
+## YES
+
+But also, **tests are the contract**
+
+</v-click>
+
+---
+layout: image
+image: hammer.png
+---
+
+<h1  style="color:white">The contract should be readable and understandable. This is the law.</h1>
 
 ---
 layout: center
@@ -177,6 +206,15 @@ https://kotest.io
 |      Free spec 	| Feature spec    	|
 |    Expect spec 	| Annotation spec 	|
 
+
+---
+layout: center
+---
+
+# How do I run the same tests with different inputs?
+
+## Data-driven testing a.k.a Parametrized tests
+
 ---
 
 # Parametrized tests? Python
@@ -186,8 +224,11 @@ https://kotest.io
 def test_eval(test_input, expected):
     assert eval(test_input) == expected
 ```
+<v-click>
 
 `test_input,expected`, really?
+
+</v-click>
 
 ---
 
@@ -206,7 +247,11 @@ void testWithMultiArgMethodSource(String str,
     int num, List<String> list) {/* snip */}
 ```
 
+<v-click>
+
 `stringIntAndListProvider`, really?
+
+</v-click>
 
 ---
 

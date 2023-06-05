@@ -2,8 +2,8 @@ lockfileVersion: '6.0'
 
 dependencies:
   '@slidev/cli':
-    specifier: ^0.42.0
-    version: 0.42.0(playwright-chromium@1.34.3)(postcss@8.4.23)
+    specifier: ^0.42.3
+    version: 0.42.3(playwright-chromium@1.34.3)(postcss@8.4.23)
   '@slidev/theme-default':
     specifier: '*'
     version: 0.21.2
@@ -12,6 +12,9 @@ dependencies:
     version: 0.21.3
 
 devDependencies:
+  '@iconify-json/emojione':
+    specifier: ^1.1.6
+    version: 1.1.6
   '@iconify-json/emojione-monotone':
     specifier: ^1.1.4
     version: 1.1.4
@@ -34,8 +37,11 @@ devDependencies:
     specifier: ^1.1.52
     version: 1.1.52
   '@iconify-json/openmoji':
-    specifier: ^1.1.25
-    version: 1.1.25
+    specifier: ^1.1.26
+    version: 1.1.26
+  '@iconify-json/twemoji':
+    specifier: ^1.1.11
+    version: 1.1.11
   playwright-chromium:
     specifier: ^1.34.3
     version: 1.34.3
@@ -580,14 +586,20 @@ packages:
       markdown-it: 13.0.1
     dev: false
 
-  /@iconify-json/carbon@1.1.16:
-    resolution: {integrity: sha512-AD8bcnRSGA0WfcGEass2FbA0sagrUzrpFx5WchuDy3uf7yKBWumdypdQK121DH321fQDl5+zZQ26T6gC9knwUQ==}
+  /@iconify-json/carbon@1.1.17:
+    resolution: {integrity: sha512-FJCHUNP+iEGZILqu5YjByV+RBrWCsMo7YWXBJSpRMvaeVH3yjK3TI8UIc7lmPGI1NRmjThiaqjxMqe7CgQY55Q==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: false
 
   /@iconify-json/emojione-monotone@1.1.4:
     resolution: {integrity: sha512-NM5oxoebPGZt1Vh46peEgfNUbREZ2mHdlC1fwtdO9+qTaWQlOzIHH4D1aHA7HIIO4v/BIqr08BNufXUNcUT3jg==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
+
+  /@iconify-json/emojione@1.1.6:
+    resolution: {integrity: sha512-laANH234XEzG8FyQV8PHHU70UCnNhyhqBB0fB2IFEcgPeno91WelVDuD/tSAhB0EgNp/w3RF+00n01/bc/ZEmQ==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
@@ -628,8 +640,8 @@ packages:
       '@iconify/types': 2.0.0
     dev: true
 
-  /@iconify-json/openmoji@1.1.25:
-    resolution: {integrity: sha512-f0gPGEP8sQ/yTzJhrUNaToUUbin/9S39dDpV9M3dWQcsqYKExE/tUKZgUw2j8hbVq2J7QI6H3myOlX+X/Fda6g==}
+  /@iconify-json/openmoji@1.1.26:
+    resolution: {integrity: sha512-VGjMqzTjaxrBdZwR+ozFt+bjcLgw8QLaB4x8F9dmWTCKE+0ykHtFBUhr4+6+9o4SzaSmSX2h+3eR2SMyx+sPjQ==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
@@ -639,6 +651,12 @@ packages:
     dependencies:
       '@iconify/types': 2.0.0
     dev: false
+
+  /@iconify-json/twemoji@1.1.11:
+    resolution: {integrity: sha512-ZA2v2AGWPC0rxiZDLqsVD+DoYB3n5Ft5q0YYAsy9QyYvoNWSdh6Vxe5d3yUP4mSpNkE4YW96RAjiZu72uXb7kQ==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
 
   /@iconify/types@2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -820,8 +838,8 @@ packages:
       picomatch: 2.3.1
     dev: false
 
-  /@slidev/cli@0.42.0(playwright-chromium@1.34.3)(postcss@8.4.23):
-    resolution: {integrity: sha512-we5s+OfzXf67O475yR6O73FDFSILPT2nH+nG4b8WnoBrAmNxLEiAjWUa95IfmOS8pOIkh+gsabyWHj95PdwnGw==}
+  /@slidev/cli@0.42.3(playwright-chromium@1.34.3)(postcss@8.4.23):
+    resolution: {integrity: sha512-fL+NId52ltwK47QEwXpTxnR4wnKM2Pqg2AQAj66rvw6m2yTOBGwrc29a4/JlWudxkgb9osIQjrPXtvxU79F9hw==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     peerDependencies:
@@ -832,12 +850,12 @@ packages:
     dependencies:
       '@antfu/utils': 0.7.2
       '@hedgedoc/markdown-it-plugins': 2.0.0(markdown-it@13.0.1)
-      '@iconify-json/carbon': 1.1.16
+      '@iconify-json/carbon': 1.1.17
       '@iconify-json/ph': 1.1.5
       '@lillallol/outline-pdf': 4.0.0
-      '@slidev/client': 0.42.0(postcss@8.4.23)(vite@4.3.9)
-      '@slidev/parser': 0.42.0
-      '@slidev/types': 0.42.0
+      '@slidev/client': 0.42.3(postcss@8.4.23)(vite@4.3.9)
+      '@slidev/parser': 0.42.3
+      '@slidev/types': 0.42.3
       '@vitejs/plugin-vue': 4.2.3(vite@4.3.9)(vue@3.3.4)
       '@vitejs/plugin-vue-jsx': 3.0.1(vite@4.3.9)(vue@3.3.4)
       '@windicss/config': 1.9.0
@@ -906,13 +924,13 @@ packages:
       - vue-template-es2015-compiler
     dev: false
 
-  /@slidev/client@0.42.0(postcss@8.4.23)(vite@4.3.9):
-    resolution: {integrity: sha512-C8TWjGOkcoglYl8OsBDAGugTLyDm1CZQM+b8mFSDdkN5gfN76znmZh7TMgeq31J/XkMyTUsYHO4s1Gh281On8Q==}
+  /@slidev/client@0.42.3(postcss@8.4.23)(vite@4.3.9):
+    resolution: {integrity: sha512-h5WZbI3tV6LMitsOWK05dxGMOt3qF/yhu776z2z0jSam/qKpqSD/7CeRu0XEX3QIrahORfE7bOBZ3xyyDfwSnw==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@antfu/utils': 0.7.2
-      '@slidev/parser': 0.42.0
-      '@slidev/types': 0.42.0
+      '@slidev/parser': 0.42.3
+      '@slidev/types': 0.42.3
       '@unocss/reset': 0.52.4
       '@vueuse/core': 10.1.2(vue@3.3.4)
       '@vueuse/head': 1.1.26(vue@3.3.4)
@@ -947,11 +965,11 @@ packages:
       - vite
     dev: false
 
-  /@slidev/parser@0.42.0:
-    resolution: {integrity: sha512-9ViXnHF/c4REmfYC/65ET0c6Gyfbc3AaCQRuuR35WoNApblJvaNRhSv64B2AibkI4B8ElwL60H8S8dbjULIRAg==}
+  /@slidev/parser@0.42.3:
+    resolution: {integrity: sha512-3Vax7pwotwZIQZUsSKiNcDLlcpQXFDTHnbeCbXcrZ/AoKHr4IvmaCANRnZ9qUwPfKRySEoP6hPww1lxG4MajNg==}
     engines: {node: '>=14.0.0'}
     dependencies:
-      '@slidev/types': 0.42.0
+      '@slidev/types': 0.42.3
       js-yaml: 4.1.0
     dev: false
 
@@ -980,8 +998,8 @@ packages:
     engines: {node: '>=14.0.0'}
     dev: false
 
-  /@slidev/types@0.42.0:
-    resolution: {integrity: sha512-HHSBVs4bFCDRyLdZ6faqMcUMy5s2b7AgFGSZ1G7etGAJ/9/VTvN29IygbLYI1ET2tpjT2l2Z9NOqmaX9zaShIQ==}
+  /@slidev/types@0.42.3:
+    resolution: {integrity: sha512-r0REpEUI7hLHjzuRcRnzrfCj1jHze+D3QBQtlImceNS5A5Vtj0/YS1WZPmVWananZJtzkHmbJs3ipjZNDrU6ng==}
     engines: {node: '>=14.0.0'}
     dev: false
 

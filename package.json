@@ -6,12 +6,13 @@
     "export": "slidev export -c --format pdf"
   },
   "dependencies": {
-    "@slidev/cli": "^0.42.0",
+    "@slidev/cli": "^0.42.3",
     "@slidev/theme-default": "*",
     "@slidev/theme-seriph": "*"
   },
   "name": "kotlin-goodies-ntd",
   "devDependencies": {
+    "@iconify-json/emojione": "^1.1.6",
     "@iconify-json/emojione-monotone": "^1.1.4",
     "@iconify-json/fa6-brands": "^1.1.11",
     "@iconify-json/fxemoji": "^1.1.4",
@@ -19,7 +20,8 @@
     "@iconify-json/gg": "^1.1.4",
     "@iconify-json/logos": "^1.1.31",
     "@iconify-json/mdi": "^1.1.52",
-    "@iconify-json/openmoji": "^1.1.25",
+    "@iconify-json/openmoji": "^1.1.26",
+    "@iconify-json/twemoji": "^1.1.11",
     "playwright-chromium": "^1.34.3"
   }
 }
