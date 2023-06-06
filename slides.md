@@ -19,7 +19,7 @@ drawings:
 css: unocss
 colorSchema: 'dark'
 background: black
-download: true
+download: "https://asm0dey.github.io/kotlin-goodies-ntd/index.pdf"
 ---
 
 # Kotlin Goodies for Testing
@@ -583,6 +583,25 @@ I expected subject: [User(#3), User(#4)]        (java.util.Arrays.ArrayList <315
 - Shows the errors
 
 </div>
+
+---
+
+# Dessert 
+
+Now, when we saw different nice DSL-using capabilities…
+
+```kotlin
+ideaTest<App>("Create Kafka connection") {
+    showBDTPanel {
+        createBaseConnection("Kafka") {
+            fillCredentialsForKafka(connectionName)
+            checkSuccessfulMessage()
+            ok()
+        }
+        checkMonitoringConnection(monitoringToolWindow)
+    }
+}
+```
 
 ---
 layout: image
