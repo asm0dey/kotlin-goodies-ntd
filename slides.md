@@ -605,6 +605,15 @@ ideaTest<App>("Create Kafka connection") {
 
 ---
 layout: image
+image: magick.png
+---
+
+<h1 style="color:white">How does it work? Magick!</h1>
+
+<Link to="39">Dive deeper</Link>
+
+---
+layout: image
 image: question.png
 ---
 
@@ -652,6 +661,86 @@ layout: center
 ![](/presqr.png)
 
 </Transform>
+
+---
+layout: end
+---
+
+---
+
+# Deeper dive into JetBrains tests
+
+```kotlin
+ideaTest<App>("Create Kafka connection") {
+```
+
+really means:
+
+```kotlin {all|1|4|6,7}
+fun <T : App> Group.ideaTest(title: String, 
+                             enabled: Boolean = true, 
+                             isMuted: Boolean = false,
+                             testBody: T.(ctx: IdeaNodeContext<T>) -> Unit) {
+    IdeaNodeContext<T>(scenarioContext).apply {
+        test(title, enabled, isMuted) {
+            app.testBody(this)
+        }
+    }
+}
+```
+
+---
+
+# Deeper dive into JetBrains tests
+
+```kotlin
+    showBDTPanel {
+```
+
+really means:
+
+```kotlin {all|1|3|5|6|9-11}
+fun App.showBDTPanel(block: BDTPanel.() -> Unit) {
+    val app = this
+    ideaFrame {
+        val frame = this
+        step("Open Big Data Tools Panel") {
+            openBDTPanel(app)
+            if (isKafka()) {
+                try {
+                    container(byXpath("//div[@accessiblename='Kafka Tool Window' and @class='InternalDecoratorImpl']")) {
+                        BDTPanel(app, frame, this).block()
+                    }
+```
+
+---
+
+# Deeper dive into JetBrains tests
+
+```kotlin
+        createBaseConnection("Kafka") {
+```
+
+really means:
+
+```kotlin {all|1|2|4|5}
+fun createBaseConnection(typeOfConnection: String, block: ConnectionDialog.() -> Unit) {
+    step("Open connection dialog") {
+        if (app.isKafka()) {
+            frame.find<ComponentFixture>(byXpath("//div[contains(@tooltiptext.key, 'toolwindow.tab.add')]")).click()
+            clickTypeOfConnection(typeOfConnection, block)
+            pause(5000)
+```
+
+---
+layout: center
+---
+
+# And this is the abyss!
+
+But you can do the same!
+
+<Link to="35">Go back to summary</Link>
 
 ---
 layout: end
