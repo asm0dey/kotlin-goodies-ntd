@@ -44,7 +44,7 @@ layout: two-cols
 
 ---
 layout: image
-image: glitched-slide.webp
+image: /glitched-slide.webp
 ---
 
 
@@ -71,7 +71,7 @@ layout: center
 
 ---
 layout: image-right
-image: bdd.png
+image: /bdd.png
 ---
 
 # BDD
@@ -125,7 +125,7 @@ void press_ok_button(){/*TODO*/}
 
 ---
 layout: image-right
-image: kotestbdd.png
+image: /kotestbdd.png
 ---
 
 ## How can we do it in Kotlin?
@@ -271,7 +271,7 @@ withData( // ddt
 
 ---
 layout: image
-image: confused.png
+image: /confused.png
 ---
 
 # What if
@@ -310,7 +310,7 @@ withData(
 
 ---
 layout: image
-image: lens.png
+image: /lens.png
 ---
 
 
@@ -345,7 +345,7 @@ checkAll(
 
 ---
 layout: image
-image: explode.png
+image: /explode.png
 ---
 
 ---
@@ -419,7 +419,7 @@ checkAll(
 
 ---
 layout: image
-image: mockingbird.png
+image: /mockingbird.png
 ---
 
 <h1 v-click="1">Time to mock!</h1>
@@ -605,7 +605,7 @@ ideaTest<App>("Create Kafka connection") {
 
 ---
 layout: image
-image: magick.png
+image: /magick.png
 ---
 
 <h1 style="color:white">How does it work? Magick!</h1>
@@ -614,7 +614,7 @@ image: magick.png
 
 ---
 layout: image
-image: question.png
+image: /question.png
 ---
 
 # What did we learn?
@@ -638,7 +638,7 @@ h1 {
 
 ---
 layout: cover
-background: monk.png
+background: /monk.png
 ---
 
 # Thank you! Time for questions 😄
