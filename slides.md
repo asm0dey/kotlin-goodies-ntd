@@ -124,8 +124,8 @@ void press_ok_button(){/*TODO*/}
 </div>
 
 ---
-layout: iframe-right
-url: https://kotest.io/docs/framework/testing-styles.html#behavior-spec
+layout: image-right
+image: kotestbdd.png
 ---
 
 ## How can we do it in Kotlin?
