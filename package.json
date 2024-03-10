@@ -6,7 +6,7 @@
     "export": "slidev export -c --format pdf"
   },
   "dependencies": {
-    "@slidev/cli": "^0.42.3",
+    "@slidev/cli": "^0.48.0",
     "@slidev/theme-default": "*",
     "@slidev/theme-seriph": "*"
   },
