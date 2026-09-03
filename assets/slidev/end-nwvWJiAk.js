@@ -1,0 +1,1 @@
+import{o,e as s,i as r,ad as a}from"../modules/vue-CcEVHrie.js";import{_ as n}from"../index-BJr9ii6q.js";const d={},c={class:"slidev-layout end"};function _(t,e){return o(),s("div",c,[r(t.$slots,"default",{},()=>[e[0]||(e[0]=a("END",-1))],!0)])}const f=n(d,[["render",_],["__scopeId","data-v-2952ab21"]]);export{f as I};
